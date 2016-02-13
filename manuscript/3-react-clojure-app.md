@@ -2,6 +2,8 @@
 
 Now we are ready to re-configure our project to use Clojure instead of the default Javascript.
 
+[Boot](http://boot-clj.com/)
+
 ## Immutable application state
 
 One of the super powers of clojure is that it comes built in with Immutable data types only. This provides a number of benefits to modern
