@@ -71,16 +71,50 @@ If it is different a `reaction` is triggered.
 Example query:
 
 ```cljs
-(q conn '[:find [?name ...]
-          :in $ ?old
-          :where
-          [?p :person/age ?age]
-          [(< ?age ?old)]
-          [?p :person/name ?name]]
-   old-age)
+(defn younger-than [old-age]
+    (q conn '[:find [?name ...]
+              :in $ ?old
+              :where
+              [?p :person/age ?age]
+              [(< ?age ?old)]
+              [?p :person/name ?name]]
+       old-age)
 ```
 
-In order to execute the query, you must dereference it using `@`.
+In order to execute the query, you must dereference the query using `@`.
+
+```cljs
+(defn people-younger-than [old-age]
+  (let [young @(younger-than age))
+```
+
+## Transactions
+
+Datalog supports two transaction types, adding new data and retracting. Retracting doesn't "really" delete data, it simply removes the item from the latest time stamp view. You can still go back to any point before this transaction and retrieve the value from history.
+
+`transact!` operates just like DataScript's `transact!`
+
+For transactions we can use `db/add` and `db/retract`
+
+`[:db/add entity-id attribute value]`
+
+`[:db/retract entity-id attribute value]`
+
+Example `add` and `retract`:
+
+`(p/transact! conn [[:db/add 123 :person/name "Jim"]])`
+
+To retract you must supply the value you wish to retract.
+
+`(p/transact! conn [[:db/retract 123 :person/name "Jim"]])`
+
+This example builds a transaction that creates a new entity with two attributes, `:person/name` and `:person/email`.
+
+```cljs
+[{:db/id #db/id[:db.part/user]
+  :person/name "Bob"
+  :person/email "bob@example.com"}]
+```
 
 ## Action/reaction flow
 
