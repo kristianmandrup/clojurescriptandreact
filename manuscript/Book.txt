@@ -1,1 +1,7 @@
-chapter1.txt
+1-intro.md
+2-react-app.md
+3-react-clojure-app.md
+4-adding-datascript.md
+Appendix-A.md
+Appendix-B.md
+Appendix-C.md
