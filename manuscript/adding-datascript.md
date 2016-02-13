@@ -93,41 +93,42 @@ Also notice that the attribute `:aka` has a value that is an Array, ie. `:db.car
 
 ### Feature set overview 
 
-The following features are supported:
+**The following features are supported**
 
-Database as a value: each DB is an immutable value. New DBs are created on top of old ones, but old ones stay perfectly valid too
-Triple store model
-EAVT, AEVT and AVET indexes
-Multi-valued attributes via :db/cardinality :db.cardinality/many
-Lazy entities and :db/valueType :db.type/ref auto-expansion
-Database “mutations” via transact!
-Callback-based analogue to txReportQueue via listen!
-Direct index lookup and iteration via datoms and seek-datoms
-Filtered databases via filter
-Lookup refs
-Unique constraints, upsert
-Pull API (thx David Thomas Hume)
-Query engine features:
+- Database as a value: each DB is an immutable value. New DBs are created on top of old ones, but old ones stay perfectly valid too
+- Triple store model
+- EAVT, AEVT and AVET indexes
+- Multi-valued attributes via :db/cardinality :db.cardinality/many
+- Lazy entities and :db/valueType :db.type/ref auto-expansion
+- Database “mutations” via transact!
+- Callback-based analogue to txReportQueue via listen!
+- Direct index lookup and iteration via datoms and seek-datoms
+- Filtered databases via filter
+- Lookup refs
+- Unique constraints, upsert
+- Pull API
 
-Implicit joins
-Query over DB or regular collections
-Parameterized queries via :in clause
-Tuple, collection, relation binding forms in :in clause
-Query over multiple DB/collections
-Predicates and user functions in query
-Rules, recursive rules
-Aggregates
-Find specifications
-Interface differences:
+**Query engine features**
 
-Conn is just an atom storing last DB value, use @conn instead of (d/db conn)
-Instead of #db/id[:db.part/user -100] just use -100 in place of :db/id or entity id
-Transactor functions can be called as [:db.fn/call f args] where f is a function reference and will take db as first argument (thx @thegeez)
-Custom query functions and aggregates should be passed as source instead of being referenced by symbol (due to lack of resolve in CLJS)
-Custom aggregate functions are called via aggregate keyword: :find (aggregate ?myfn ?e) :in $ ?myfn
-Additional :db.fn/retractAttribute shortcut
-Transactions are not annotated by default with :db/txInstant
+- Implicit joins
+- Query over DB or regular collections
+- Parameterized queries via :in clause
+- Tuple, collection, relation binding forms in :in clause
+- Query over multiple DB/collections
+- Predicates and user functions in query
+- Rules, recursive rules
+- Aggregates
+- Find specifications
 
+**Interface differences**
+
+- Conn is just an atom storing last DB value, use @conn instead of (d/db conn)
+- Instead of #db/id[:db.part/user -100] just use -100 in place of :db/id or entity id
+- Transactor functions can be called as [:db.fn/call f args] where f is a function reference and will take db as first argument
+- Custom query functions and aggregates should be passed as source instead of being referenced by symbol (due to lack of resolve in CLJS)
+- Custom aggregate functions are called via aggregate keyword: :find (aggregate ?myfn ?e) :in $ ?myfn
+- Additional :db.fn/retractAttribute shortcut
+- Transactions are not annotated by default with :db/txInstant
 
 ### Adding Posh
 
