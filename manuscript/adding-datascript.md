@@ -129,19 +129,61 @@ Additional :db.fn/retractAttribute shortcut
 Transactions are not annotated by default with :db/txInstant
 
 
-## Todo app
-
-[datascript-todo](https://github.com/tonsky/datascript-todo)
-
 ### Adding Posh
 
 We should avoid having the Queries inlined in the components. Ideally components should be declarative and be mostly concerned with rendering their structure, not logic. Separation of concerns. Re-frame to the rescue!
 
 ### Adding Re-frame
 
+### Adding Rum to the cocktail
+
+With Posh and Reframe we have a very nice base architecture...
+
+### Layout the Garden
+
+Traditionally layout has been written in a peculiar "language" for designers called CSS. However... 
+why not keep the layout in Clojure as well, just like the HTML?
+
+Note: Make sure we have mentioned how Clojure is written in a data syntax, EDN. We want to use EDN in our entire architecture!
+
+[Do we even need CSS anymore?](https://css-tricks.com/the-debate-around-do-we-even-need-css-anymore/)
+
+[Radium](http://stack.formidable.com/radium/) is a set of tools to manage inline styles on React elements. It gives you powerful styling capabilities without CSS.
+
+Eliminating CSS in favor of inline styles that are computed on the fly is a powerful approach, providing a number of benefits over traditional CSS:
+
+- Scoped styles without selectors
+- Avoids specificity conflicts
+- Source order independence
+- Dead code elimination
+- Highly expressive
+
+Say hi to [Garden](https://github.com/noprompt/garden), a Clojure CSS library. 
+
+Writing CSS in EDN syntax almost looks the same. However we have the full power of Clojure to leverage in order to generate our CSS dynamically.
+
+```cljs
+(css [:a
+ {:font-weight 'normal
+  :text-decoration 'none}
+ [:&:hover
+  {:font-weight 'bold
+   :text-decoration 'underline}]])
+```
+
+## Todo app
+
+We will first build a simple Todo app to leverage the stack we have assembled.
+
+[datascript-todo](https://github.com/tonsky/datascript-todo)
 
 
 ## Creating a chat application
 
+Most modern apps are data driven and real time, with many users concurrently communicating and updating shared state.
+We will build a chat app to show how we can achieve add real time communication with our stack.
+
 [datascript-chat](http://tonsky.me/blog/datascript-chat/)
+
+
 
