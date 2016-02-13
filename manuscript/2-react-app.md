@@ -38,3 +38,8 @@ Finally create your first React Native project.
 `$ react-native init MyAwesomeProject`
 
 If all goes well you now have the project structure to start development. Go grab a coffee and celebrate!!
+
+### React best practices
+
+React is a View renderer, rendering a tree of of View components. It is conventional wisdom to ensure separation and single responsibility, hence we should avoid having the queries inlined in View components. 
+View components should ideally be declarative and concerned only with rendering the structure of the view. 

@@ -1,7 +1,9 @@
 1-intro.md
 2-react-app.md
 3-react-clojure-app.md
-4-adding-datascript.md
+client-infrastructure.md
+adding-datascript.md
+posh-and-polish.md
 Appendix-A.md
 Appendix-B.md
 Appendix-C.md
